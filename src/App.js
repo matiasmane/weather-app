@@ -15,6 +15,10 @@ class App extends React.Component {
     description: undefined,
     button: false,
     error: undefined,
+    favCity: localStorage.getItem('favCity'),
+    favCountry: localStorage.getItem('favCountry'),
+    favTemp: localStorage.getItem('favTemp'),
+    favTempChecked:  localStorage.getItem('favTempChecked')
   }
   getWeather = async (e) => {
     e.preventDefault();
@@ -54,18 +58,28 @@ class App extends React.Component {
   saveFavorite = (ev) => {
     localStorage.setItem('favCity', this.state.city);
     localStorage.setItem('favCountry', this.state.country);
+    localStorage.setItem('favTemp', this.state.temperature);
+    localStorage.setItem('favTempChecked', Date().toLocaleString());
+    this.setState({
+      favCity: localStorage.getItem('favCity'),
+      favCountry: localStorage.getItem('favCountry'),
+      favTemp: localStorage.getItem('favTemp'),
+      favTempChecked: localStorage.getItem('favTempChecked'),
+})
   }
-
-  getFavorite = async (e) => {
-    e.preventDefault();
-    const favCity = localStorage.getItem('favCity');
-    const favCountry = localStorage.getItem('favCountry');
-    console.log(localStorage.getItem('favCity'))
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${favCity},${favCountry}&appid=${API_KEY}&units=metric`);
+  Refresh = async (a) => {
+    a.preventDefault();
+    const city = localStorage.getItem('favCity');
+    const country = localStorage.getItem('favCountry');
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
-    
+    localStorage.setItem('favTemp', data.main.temp);
+    localStorage.setItem('favTempChecked', Date().toLocaleString());
+    this.setState({
+      favTemp: localStorage.getItem('favTemp'),
+      favTempChecked: localStorage.getItem('favTempChecked'),
+})
   }
-
   render() {
     return (
       <div>
@@ -79,11 +93,13 @@ class App extends React.Component {
           error={this.state.error}
         />
         <Favorite 
-          favCity={localStorage.getItem('favCity')}
-          favCountry={localStorage.getItem('favCountry')}
+          favCity={this.state.favCity}
+          favCountry={this.state.favCountry}
+          favTemp={this.state.favTemp}
+          favTempChecked={this.state.favTempChecked}
         />
         {this.state.button && <button onClick={this.saveFavorite}>Set as favorite city.</button> }
-
+        <button onClick={this.Refresh}>Check for update</button>
       </div>
     )
   }
