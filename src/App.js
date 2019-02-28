@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Titles from "./components/Titles"
 import Form from "./components/Form"
 import Weather from "./components/Weather"
 import Favorite from "./components/Favorite"
@@ -18,6 +17,7 @@ class App extends React.Component {
     favCity: localStorage.getItem('favCity'),
     favCountry: localStorage.getItem('favCountry'),
     favTemp: localStorage.getItem('favTemp'),
+    favDes: localStorage.getItem('favDes'),
     favTempChecked: localStorage.getItem('favTempChecked')
   }
   getWeather = async (e) => {
@@ -51,7 +51,7 @@ class App extends React.Component {
         country: undefined,
         description: undefined,
         button: false,
-        error: "Please enter the values."
+        error: "Please enter valid city and country."
       })
     }
   }
@@ -59,12 +59,16 @@ class App extends React.Component {
     localStorage.setItem('favCity', this.state.city);
     localStorage.setItem('favCountry', this.state.country);
     localStorage.setItem('favTemp', this.state.temperature);
-    localStorage.setItem('favTempChecked', Date().toLocaleString());
+    localStorage.setItem('favDes', this.state.description);
+    var tempDate = new Date();
+    var date = tempDate.getDate() + '.' + (tempDate.getMonth()+1) + '.' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes();
+    localStorage.setItem('favTempChecked', date);
     this.setState({
       favCity: localStorage.getItem('favCity'),
       favCountry: localStorage.getItem('favCountry'),
       favTemp: localStorage.getItem('favTemp'),
-      favTempChecked: localStorage.getItem('favTempChecked'),
+      favDes: localStorage.getItem('favDes'),
+      favTempChecked: localStorage.getItem('favTempChecked')
     })
   }
   Refresh = async (a) => {
@@ -74,9 +78,13 @@ class App extends React.Component {
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
     localStorage.setItem('favTemp', data.main.temp);
-    localStorage.setItem('favTempChecked', Date().toLocaleString());
+    localStorage.setItem('favDes', data.weather[0].description);
+    var tempDate = new Date();
+    var date = tempDate.getDate() + '.' + (tempDate.getMonth()+1) + '.' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes();
+    localStorage.setItem('favTempChecked', date);
     this.setState({
-      favTemp: data.main.temp,
+      favTemp: localStorage.getItem('favTemp'),
+      favDes: localStorage.getItem('favDes'),
       favTempChecked: localStorage.getItem('favTempChecked'),
     })
   }
@@ -86,20 +94,21 @@ class App extends React.Component {
         <div className="wrapper">
           <div className="main">
             <div className="row">
-              <div className="col-5 title-container">
-                <div className="col-9 title">
-                  <h1>Favorite city</h1>
+              <div className="col-5 favorite-container">
+                <div className="col-9 favorite-title">
+                  <h1>Current location</h1>
                 </div>
-                <div className="col-9 title-container2">
+                <div className="col-9 favorite-info">
                   <Favorite
                     favCity={this.state.favCity}
                     favCountry={this.state.favCountry}
                     favTemp={this.state.favTemp}
+                    favDes={this.state.favDes}
                     favTempChecked={this.state.favTempChecked}
                   />
                 </div>
-                <div className="col-5 title-button">
-                  {localStorage.getItem('favCity') && <button onClick={this.Refresh}>Check for update</button>}
+                <div className="col-5 favorite-button">
+                  {localStorage.getItem('favCity') && <button onClick={this.Refresh}>Update</button>}
                 </div>
               </div>
               <div className="col-7 form-container">
@@ -111,7 +120,7 @@ class App extends React.Component {
                   description={this.state.description}
                   error={this.state.error}
                 />
-                {this.state.button && <button className="save-button" onClick={this.saveFavorite}>Set as favorite city</button>}
+                {this.state.button && this.state.city !== this.state.favCity && <button className="save-button" onClick={this.saveFavorite}>Set as current location</button>}
               </div>
             </div>
           </div>
