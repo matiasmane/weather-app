@@ -43,6 +43,7 @@ body {
 
 .current-location-info {
     position: absolute;
+    margin-top: 10px;
   }
 
 .form-container {

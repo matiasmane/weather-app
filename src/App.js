@@ -68,13 +68,13 @@ class App extends React.Component {
       curDescription: localStorage.getItem('curDescription')
     })
   }
-  
+
   refreshCurrent = async (a) => {
     const city = localStorage.getItem('curCity');
     const country = localStorage.getItem('curCountry');
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
-    if (data.cod !== '404'){
+    if (data.cod !== '404') {
       localStorage.setItem('curTemperature', data.main.temp);
       localStorage.setItem('curDescription', data.weather[0].description);
       this.setState({
@@ -84,8 +84,8 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount(){
-    if (this.state.curCity){
+  componentDidMount() {
+    if (this.state.curCity) {
       this.refreshCurrent();
     }
   }
