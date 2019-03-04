@@ -2,7 +2,7 @@ import React from 'react';
 
 import Form from "./components/Form"
 import Weather from "./components/Weather"
-import Favorite from "./components/Favorite"
+import Favorite from "./components/Current"
 
 const API_KEY = "12de0761e0857cf7589f898c183bb2d9";
 
@@ -14,12 +14,12 @@ class App extends React.Component {
     description: undefined,
     button: false,
     error: undefined,
-    favCity: localStorage.getItem('favCity'),
-    favCountry: localStorage.getItem('favCountry'),
-    favTemp: localStorage.getItem('favTemp'),
-    favDes: localStorage.getItem('favDes'),
-    favTempChecked: localStorage.getItem('favTempChecked')
+    curCity: localStorage.getItem('curCity'),
+    curCountry: localStorage.getItem('curCountry'),
+    curTemperature: localStorage.getItem('curTemperature'),
+    curDescription: localStorage.getItem('curDescription')
   }
+
   getWeather = async (e) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
@@ -51,64 +51,62 @@ class App extends React.Component {
         country: undefined,
         description: undefined,
         button: false,
-        error: "Please enter valid city and country."
+        error: "Please enter both values."
       })
     }
   }
-  saveFavorite = (ev) => {
-    localStorage.setItem('favCity', this.state.city);
-    localStorage.setItem('favCountry', this.state.country);
-    localStorage.setItem('favTemp', this.state.temperature);
-    localStorage.setItem('favDes', this.state.description);
-    var tempDate = new Date();
-    var date = tempDate.getDate() + '.' + (tempDate.getMonth()+1) + '.' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes();
-    localStorage.setItem('favTempChecked', date);
+
+  setCurrent = (ev) => {
+    localStorage.setItem('curCity', this.state.city);
+    localStorage.setItem('curCountry', this.state.country);
+    localStorage.setItem('curTemperature', this.state.temperature);
+    localStorage.setItem('curDescription', this.state.description);
     this.setState({
-      favCity: localStorage.getItem('favCity'),
-      favCountry: localStorage.getItem('favCountry'),
-      favTemp: localStorage.getItem('favTemp'),
-      favDes: localStorage.getItem('favDes'),
-      favTempChecked: localStorage.getItem('favTempChecked')
+      curCity: localStorage.getItem('curCity'),
+      curCountry: localStorage.getItem('curCountry'),
+      curTemperature: localStorage.getItem('curTemperature'),
+      curDescription: localStorage.getItem('curDescription')
     })
   }
-  Refresh = async (a) => {
-    a.preventDefault();
-    const city = localStorage.getItem('favCity');
-    const country = localStorage.getItem('favCountry');
+  
+  refreshCurrent = async (a) => {
+    const city = localStorage.getItem('curCity');
+    const country = localStorage.getItem('curCountry');
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
-    localStorage.setItem('favTemp', data.main.temp);
-    localStorage.setItem('favDes', data.weather[0].description);
-    var tempDate = new Date();
-    var date = tempDate.getDate() + '.' + (tempDate.getMonth()+1) + '.' + tempDate.getFullYear() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes();
-    localStorage.setItem('favTempChecked', date);
-    this.setState({
-      favTemp: localStorage.getItem('favTemp'),
-      favDes: localStorage.getItem('favDes'),
-      favTempChecked: localStorage.getItem('favTempChecked'),
-    })
+    if (data.cod !== '404'){
+      localStorage.setItem('curTemperature', data.main.temp);
+      localStorage.setItem('curDescription', data.weather[0].description);
+      this.setState({
+        curTemperature: localStorage.getItem('curTemperature'),
+        curDescription: localStorage.getItem('curDescription')
+      })
+    }
   }
+
+  componentDidMount(){
+    if (this.state.curCity){
+      this.refreshCurrent();
+    }
+  }
+
   render() {
     return (
       <div>
         <div className="wrapper">
           <div className="main">
             <div className="row">
-              <div className="col-5 favorite-container">
-                <div className="col-9 favorite-title">
+              <div className="col-5 current-location-container">
+                <div className="col-9 current-location-title">
                   <h1>Current location</h1>
                 </div>
-                <div className="col-9 favorite-info">
+                <div className="col-9 current-location-info">
                   <Favorite
-                    favCity={this.state.favCity}
-                    favCountry={this.state.favCountry}
-                    favTemp={this.state.favTemp}
-                    favDes={this.state.favDes}
-                    favTempChecked={this.state.favTempChecked}
+                    curCity={this.state.curCity}
+                    curCountry={this.state.curCountry}
+                    curTemperature={this.state.curTemperature}
+                    curDescription={this.state.curDescription}
                   />
-                </div>
-                <div className="col-5 favorite-button">
-                  {localStorage.getItem('favCity') && <button onClick={this.Refresh}>Update</button>}
                 </div>
               </div>
               <div className="col-7 form-container">
@@ -120,7 +118,8 @@ class App extends React.Component {
                   description={this.state.description}
                   error={this.state.error}
                 />
-                {this.state.button && this.state.city !== this.state.favCity && <button className="save-button" onClick={this.saveFavorite}>Set as current location</button>}
+                {this.state.button && (this.state.city !== this.state.curCity || this.state.country !== this.state.curCountry) &&
+                  <button onClick={this.setCurrent}>Set as current location</button>}
               </div>
             </div>
           </div>

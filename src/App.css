@@ -7,7 +7,7 @@ body {
 }
 
 .wrapper {
-  background: linear-gradient(to right, #ED6A5A, rgb(228, 81, 62));
+  background: linear-gradient(to right, rgb(62, 97, 85), rgb(31, 58, 58));
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -22,10 +22,9 @@ body {
   margin: 0 auto;
 }
 
-.favorite-container {
+.current-location-container {
   height: 90vh;
-  background: url("img/bg.jpg") center center no-repeat;
-  background-size: cover;
+  background: rgb(224, 195, 195);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +32,7 @@ body {
   color: #000;
 }
 
-.favorite-title {
+.current-location-title {
     position: relative;
     margin-bottom: 350px;
     font-size: 50px;
@@ -42,26 +41,21 @@ body {
     font-family: 'Roboto Slab', serif;
   }
 
-.favorite-info {
+.current-location-info {
     position: absolute;
-  }
-
-.favorite-button {
-    position: absolute;
-    margin-top: 150px;
   }
 
 .form-container {
-  background-color: #1C3144;
+  background-color: rgb(39, 41, 43);
   height: 90vh;
   padding-top: 100px;
   padding-left: 50px;
 }
 
 input[type="text"] {
-  background-color: #1C3144;
+  background-color: rgb(39, 41, 43);
   border: 0;
-  border-bottom: solid 2px #CD5D67;
+  border-bottom: solid 2px rgb(0, 194, 201);
   width: 30%;
   padding-bottom: 4px;
   color: rgb(255, 255, 255) !important;
@@ -77,7 +71,7 @@ input[type="text"] {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #1C3144 inset;
+    -webkit-box-shadow: 0 0 0 30px rgb(39, 41, 43) inset;
     -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
 
@@ -90,7 +84,7 @@ button {
   letter-spacing: 1px;
   font-size: 15px;
   cursor: pointer;
-  background-color: #CD5D67;
+  background-color: rgb(0, 194, 201);
   color: #fff;
   font-weight: 100;
 }
@@ -107,7 +101,7 @@ button:active {
 }
 
 .weather__key {
-  color: #f16051;
+  color: rgb(0, 194, 201);
   border-bottom: solid 2px rgba(255,255,255,0.06);
   padding: 20px 0 20px 0;
   font-weight: 400;
