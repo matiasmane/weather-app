@@ -1,7 +1,7 @@
 import React from "react";
 
-const Favorite = props => (
-    <div className="favorite__info">
+const Current = props => (
+    <div className="current-location__info">
         {props.curCity && props.curCountry && <p>{props.curCity}, {props.curCountry}</p>}
         {props.curCity && <p>Temperature: {props.curTemperature}</p>}
         {props.curCity && <p>Conditions: {props.curDescription}</p>}
@@ -10,4 +10,4 @@ const Favorite = props => (
     </div>
 )
 
-export default Favorite;
+export default Current;

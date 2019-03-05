@@ -46,6 +46,12 @@ body {
     margin-top: 10px;
   }
 
+  .current-location__info {
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }
+
 .form-container {
   background-color: rgb(39, 41, 43);
   height: 90vh;
@@ -122,10 +128,4 @@ button:active {
   font-size: 20px;
   letter-spacing: 1px;
   font-weight: 200;
-}
-
-.favorite__info {
-  font-size: 20px;
-  font-weight: 200;
-  letter-spacing: 2px;
 }
