@@ -2,7 +2,7 @@ import React from 'react';
 
 import Form from "./components/Form"
 import Weather from "./components/Weather"
-import Favorite from "./components/Current"
+import Current from "./components/Current"
 
 const API_KEY = "12de0761e0857cf7589f898c183bb2d9";
 
@@ -96,18 +96,13 @@ class App extends React.Component {
         <div className="wrapper">
           <div className="main">
             <div className="row">
-              <div className="col-5 current-location-container">
-                <div className="col-9 current-location-title">
-                  <h1>Current location</h1>
-                </div>
-                <div className="col-9 current-location-info">
-                  <Favorite
-                    curCity={this.state.curCity}
-                    curCountry={this.state.curCountry}
-                    curTemperature={this.state.curTemperature}
-                    curDescription={this.state.curDescription}
-                  />
-                </div>
+              <div className="col-5 current-location">
+                <Current
+                  curCity={this.state.curCity}
+                  curCountry={this.state.curCountry}
+                  curTemperature={this.state.curTemperature}
+                  curDescription={this.state.curDescription}
+                />
               </div>
               <div className="col-7 form-container">
                 <Form getWeather={this.getWeather} />
