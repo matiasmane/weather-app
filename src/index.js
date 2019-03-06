@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import "./App.css";
+import "./components/Current/Current.css"
+import "./components/Weather/Weather.css"
+import "./components/Form/Form.css"
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
