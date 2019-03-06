@@ -16,3 +16,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 4) Once a city is selected as current location it will be saved in the browsers local storage and then it will be loaded automatically when the user refreshes the page (or visits the page again).
 
 ![Refreshed page](https://i.imgur.com/RkpD3UT.jpg)
+
+## How to run the app locally?
+
+### `npm run start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
