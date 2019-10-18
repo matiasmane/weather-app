@@ -66,7 +66,7 @@ const Weather = (props) => {
                     }
                 </div>
                 : <div className="disclaimerWrapper">
-                    <h1 className="disclaimer">Tietoja ladataan...</h1>
+                    <h1 className="disclaimer">Loading...</h1>
                 </div>
             }
         </>

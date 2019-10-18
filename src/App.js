@@ -44,7 +44,7 @@ class App extends React.Component {
                         weatherId={this.state.weatherId}>
                     </Weather>
                     : <div>
-                        <h1>SOVELLUS TARVITSEE SIJAINTITIETOJASI.</h1>
+                        <h1>The app needs your location.</h1>
                     </div>
                 }
             </>
