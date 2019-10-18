@@ -1,29 +1,105 @@
-.weather__info {
-    width: 60%;
-    font-size: 20px;
-    font-weight: 200;
-    letter-spacing: 2px;
+h1 {
+  text-transform: uppercase;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.currentWeather {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+.currentTemperature {
+  font-size: 10rem;
+  text-align: center;
+}
+
+.currentDescription {
+  padding-left: 2rem;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.currentDescription__image, .currentDescription__text {
+  text-align: center;
+}
+
+.currentWeather__image {
+  margin-top: 0.8rem;
+  height: 8rem;
+  fill: white;
+}
+
+.forecast {
+  display: flex;
+  margin-top: 2.4rem;
+}
+
+.forecastDay {
+  flex: 1;
+  text-align: center;
+}
+
+.forecastDescription {
+  text-transform: capitalize;
+}
+
+.forecastTemperature {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.forecastImage {
+  height: 80px;
+}
+
+.disclaimerWrapper {
+  margin: 4rem;
+}
+
+.disclaimer {
+  text-align: left;
+}
+
+@media only screen and (max-width: 725px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .currentTemperature {
+    font-size: 120px;
+  }
+
+  .currentDescription {
+    font-size: 24px;
   }
   
-  .weather__key {
-    color: rgb(0, 194, 201);
-    border-bottom: solid 2px rgba(255,255,255,0.06);
-    padding: 20px 0 20px 0;
-    font-weight: 400;
+  .currentWeather__image {
+    margin-top: 0.4rem;
+    height: 4rem;
   }
-  
-  .weather__key:last-child {
-    border: 0;
+
+  .forecast {
+    margin-top: 3.2rem;
   }
-  
-  .weather__value {
-    color: #fff;
-    font-weight: 200;
+
+  .forecastDay:not(:first-child) {
+    margin-left: 23px;
   }
-  
-  .weather__error {
-    color: #f16051;
-    font-size: 20px;
-    letter-spacing: 1px;
-    font-weight: 200;
+
+  .forecastTemperature{
+    font-size: 24px;
+    margin: 0;
   }
+
+  .forecastDate {
+    font-size: 16px;
+    margin: 0
+    }
+
+  .forecastImage {
+    height: 36px;
+  }
+}

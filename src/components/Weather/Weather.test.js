@@ -1,7 +1,7 @@
 import React from 'react';
-import Weather from './Weather';
+import Current from './Weather';
 import {shallow} from 'enzyme'
 
 it('renders without crashing', () => {
-  shallow(<Weather />)
+  shallow(<Current />)
 });

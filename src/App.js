@@ -1,117 +1,48 @@
 import React from 'react';
 
 import Weather from "./components/Weather/Weather"
-import Current from "./components/Current/Current"
-
-const API_KEY = "12de0761e0857cf7589f898c183bb2d9";
 
 class App extends React.Component {
-  state = {
-    temperature: undefined,
-    city: undefined,
-    country: undefined,
-    description: undefined,
-    button: false,
-    error: undefined,
-    curCity: localStorage.getItem('curCity'),
-    curCountry: localStorage.getItem('curCountry'),
-    curTemperature: localStorage.getItem('curTemperature'),
-    curDescription: localStorage.getItem('curDescription')
-  }
 
-  getWeather = async (e) => {
-    e.preventDefault();
-    const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
-    if (city && country) {
-      const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
-      const data = await api_call.json();
-      if (city && country && data.cod !== '404') {
-        this.setState({
-          temperature: data.main.temp,
-          city: data.name,
-          country: data.sys.country,
-          description: data.weather[0].description,
-          button: true,
-          error: ""
-        })
-      } else {
-        this.setState({
-          temperature: undefined,
-          city: undefined,
-          country: undefined,
-          description: undefined,
-          button: false,
-          error: "City not found."
-        })
-      }
-    } else {
-      this.setState({
+    state = {
         temperature: undefined,
         city: undefined,
         country: undefined,
         description: undefined,
-        button: false,
-        error: "Please enter both values."
-      })
+        forecast: []
     }
-  }
 
-  setCurrent = (ev) => {
-    localStorage.setItem('curCity', this.state.city);
-    localStorage.setItem('curCountry', this.state.country);
-    localStorage.setItem('curTemperature', this.state.temperature);
-    localStorage.setItem('curDescription', this.state.description);
-    this.setState({
-      curCity: localStorage.getItem('curCity'),
-      curCountry: localStorage.getItem('curCountry'),
-      curTemperature: localStorage.getItem('curTemperature'),
-      curDescription: localStorage.getItem('curDescription')
-    })
-  }
-
-  refreshCurrent = async (a) => {
-    const city = localStorage.getItem('curCity');
-    const country = localStorage.getItem('curCountry');
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
-    const data = await api_call.json();
-    if (data.cod !== '404') {
-      localStorage.setItem('curTemperature', data.main.temp);
-      localStorage.setItem('curDescription', data.weather[0].description);
-      this.setState({
-        curTemperature: localStorage.getItem('curTemperature'),
-        curDescription: localStorage.getItem('curDescription')
-      })
+    async GetWeather(props) {
+        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
+        const weather = await api_call.json();
+        const api_call2 = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
+        const forecast = await api_call2.json();
+        const list = forecast.list;
+        this.setState({
+            city: weather.name,
+            temperature: weather.main.temp.toFixed(),
+            description: weather.weather[0].description,
+            weatherId: weather.weather[0].id,
+            forecast: [list[8], list[16], list[24], list[32], list[39]]
+        })
     }
-  }
 
-  componentDidMount() {
-    if (this.state.curCity) {
-      this.refreshCurrent();
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(this.GetWeather.bind(this))
     }
-  }
 
-  render() {
-    return (
-      <div>
-        <Current
-          curCity={this.state.curCity}
-          curCountry={this.state.curCountry}
-          curTemperature={this.state.curTemperature}
-          curDescription={this.state.curDescription}
-        />
-        <Weather
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          description={this.state.description}
-          error={this.state.error}
-        />
-        {this.state.button && (this.state.city !== this.state.curCity || this.state.country !== this.state.curCountry) &&
-          <button onClick={this.setCurrent}>Set as current location</button>}
-      </div>
-    )
-  }
+    render() {
+        return (
+            <Weather
+                city={this.state.city}
+                temperature={this.state.temperature}
+                description={this.state.description}
+                conditionId={this.state.conditionId}
+                forecast={this.state.forecast}
+                weatherId={this.state.weatherId}>
+            </Weather>
+        )
+    }
 }
 
 export default App;
