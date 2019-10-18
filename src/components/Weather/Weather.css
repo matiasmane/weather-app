@@ -12,17 +12,21 @@ h1 {
 }
 
 .currentTemperature {
-  font-size: 10rem;
+  font-size: 8rem;
   text-align: center;
 }
 
 .currentDescription {
   padding-left: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-transform: capitalize;
 }
 
 .currentDescription__image, .currentDescription__text {
+  text-align: center;
+}
+
+.currentWeather__imageWrapper {
   text-align: center;
 }
 
@@ -69,11 +73,11 @@ h1 {
   }
 
   .currentTemperature {
-    font-size: 120px;
+    font-size: 80px;
   }
 
   .currentDescription {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .currentWeather__image {

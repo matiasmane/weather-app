@@ -33,14 +33,21 @@ class App extends React.Component {
 
     render() {
         return (
-            <Weather
-                city={this.state.city}
-                temperature={this.state.temperature}
-                description={this.state.description}
-                conditionId={this.state.conditionId}
-                forecast={this.state.forecast}
-                weatherId={this.state.weatherId}>
-            </Weather>
+            <>
+                {navigator.geolocation ?
+                    <Weather
+                        city={this.state.city}
+                        temperature={this.state.temperature}
+                        description={this.state.description}
+                        conditionId={this.state.conditionId}
+                        forecast={this.state.forecast}
+                        weatherId={this.state.weatherId}>
+                    </Weather>
+                    : <div>
+                        <h1>SOVELLUS TARVITSEE SIJAINTITIETOJASI.</h1>
+                    </div>
+                }
+            </>
         )
     }
 }

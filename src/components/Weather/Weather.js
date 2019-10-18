@@ -46,7 +46,7 @@ const Weather = (props) => {
                                 {props.description}
                             </div>
                             {props.weatherId &&
-                                <div>
+                                <div className="currentWeather__imageWrapper">
                                     <img className="currentWeather__image" alt="Image_of_weather_description" src={Images[toId(props.weatherId)]} />
                                 </div>
                             }
@@ -66,7 +66,7 @@ const Weather = (props) => {
                     }
                 </div>
                 : <div className="disclaimerWrapper">
-                    <h1 className="disclaimer">SOVELLUS TARVITSEE SIJAINTITIETOJASI.</h1>
+                    <h1 className="disclaimer">Tietoja ladataan...</h1>
                 </div>
             }
         </>
