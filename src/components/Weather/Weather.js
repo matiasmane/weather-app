@@ -34,7 +34,7 @@ const Weather = (props) => {
         <>
             {props.city ?
                 <div>
-                    <h1>{props.city} Testi</h1>
+                    <h1>{props.city} Weather</h1>
                     <div className="currentWeather">
                         <div className="currentTemperature">
                             <p>
