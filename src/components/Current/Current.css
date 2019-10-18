@@ -65,6 +65,14 @@ h1 {
   height: 80px;
 }
 
+.disclaimer_wrapper {
+  margin: 4rem;
+}
+
+.disclaimer {
+  text-align: left;
+}
+
 @media only screen and (max-width: 725px) {
   h1 {
     font-size: 40px;

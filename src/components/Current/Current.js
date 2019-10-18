@@ -22,48 +22,55 @@ const Current = (props) => {
     }
     function toId(id) {
         let idAsNumber = 0;
-        if (id === 801 | id === 802 | id === 803 | id === 804 ) {
+        if (id === 801 | id === 802 | id === 803 | id === 804) {
             idAsNumber = 80;
         } else {
-            idAsNumber = (''+id)[0];
+            idAsNumber = ('' + id)[0];
         }
         return (
             idAsNumber
         )
     }
     return (
-        <div>
-            <h1>{props.city} weather</h1>
-            <div className="weather">
-                <div className="temperature">
-                    <p>
-                        {props.temperature} {' \u00b0C'}
-                    </p>
-                </div>
-                <div className="description">
-                    <div className="text">
-                        {props.description}
+        <>
+        {props.city ?
+            <div>
+                <h1>{props.city} weather</h1>
+                <div className="weather">
+                    <div className="temperature">
+                        <p>
+                            {props.temperature} {' \u00b0C'}
+                        </p>
                     </div>
-                    {props.conditionId &&
-                        <div className="image">
-                            <img className="weather_image" alt="Weather_image" src={Images[props.conditionId]} />
+                    <div className="description">
+                        <div className="text">
+                            {props.description}
                         </div>
-                    }
+                        {props.conditionId &&
+                            <div className="image">
+                                <img className="weather_image" alt="Weather_image" src={Images[props.conditionId]} />
+                            </div>
+                        }
+                    </div>
                 </div>
+                {props.forecast[0] &&
+                    <div className="forecast">
+                        {props.forecast.map((item) =>
+                            <div className="forecast_day">
+                                <p className="forecast_date">{toDatetime(item.dt_txt)}</p>
+                                <p className="temp">{item.main.temp.toFixed()} {' \u00b0C'}</p>
+                                <img className="forecast_image" alt="Weather_image" src={Images[toId(item.weather[0].id)]} />
+
+                            </div>
+                        )}
+                    </div>
+                }
+            </div> 
+            : <div className="disclaimer_wrapper">
+                <h1 className="disclaimer">SALLI SIJAINTISITIETOSI JATKAAKSESI SOVELLUKSEN KÄYTTÖÄ.</h1>
             </div>
-            {props.forecast[0] &&
-                <div className="forecast">
-                    {props.forecast.map((item) =>
-                        <div className="forecast_day">
-                            <p className="forecast_date">{toDatetime(item.dt_txt)}</p>
-                            <p className="temp">{item.main.temp.toFixed()} {' \u00b0C'}</p>
-                            <img className="forecast_image" alt="Weather_image" src={Images[toId(item.weather[0].id)]} />
-                            
-                        </div>
-                    )}
-                </div>
-            }
-        </div>
+        }
+        </>
     );
 };
 
