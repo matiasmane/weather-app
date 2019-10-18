@@ -13,10 +13,9 @@ class App extends React.Component {
     }
 
     async GetWeather(props) {
-        console.log(props.coords.latitude)
-        const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
+        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
         const data = await api_call.json();
-        const api_call2 = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
+        const api_call2 = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${props.coords.latitude}&lon=${props.coords.longitude}&appid=12de0761e0857cf7589f898c183bb2d9&units=metric`);
         const data2 = await api_call2.json();
         const list = data2.list;
         const id = data.weather[0].id
@@ -26,10 +25,6 @@ class App extends React.Component {
         } else {
             idAsNumber = ('' + id)[0];
         }
-        console.log(idAsNumber);
-        console.log(data.main.temp.toFixed());
-        console.log(data.name)
-        console.log([list[8], list[16], list[24], list[32], list[39]])
         this.setState({
             city: data.name,
             temperature: data.main.temp.toFixed(),
