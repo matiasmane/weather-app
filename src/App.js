@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Form from "./components/Form/Form"
 import Weather from "./components/Weather/Weather"
 import Current from "./components/Current/Current"
 
@@ -95,32 +94,21 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="wrapper">
-          <div className="main">
-            <div className="row">
-              <div className="col-5 current-location">
-                <Current
-                  curCity={this.state.curCity}
-                  curCountry={this.state.curCountry}
-                  curTemperature={this.state.curTemperature}
-                  curDescription={this.state.curDescription}
-                />
-              </div>
-              <div className="col-7 form-container">
-                <Form getWeather={this.getWeather} />
-                <Weather
-                  temperature={this.state.temperature}
-                  city={this.state.city}
-                  country={this.state.country}
-                  description={this.state.description}
-                  error={this.state.error}
-                />
-                {this.state.button && (this.state.city !== this.state.curCity || this.state.country !== this.state.curCountry) &&
-                  <button onClick={this.setCurrent}>Set as current location</button>}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Current
+          curCity={this.state.curCity}
+          curCountry={this.state.curCountry}
+          curTemperature={this.state.curTemperature}
+          curDescription={this.state.curDescription}
+        />
+        <Weather
+          temperature={this.state.temperature}
+          city={this.state.city}
+          country={this.state.country}
+          description={this.state.description}
+          error={this.state.error}
+        />
+        {this.state.button && (this.state.city !== this.state.curCity || this.state.country !== this.state.curCountry) &&
+          <button onClick={this.setCurrent}>Set as current location</button>}
       </div>
     )
   }

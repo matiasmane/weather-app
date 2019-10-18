@@ -1,23 +1,99 @@
-.current-location {
-    height: 90vh;
-    background: rgb(224, 195, 195);
-    text-align: center;
-    color: #000;
+h1 {
+  text-transform: uppercase;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.saturate {-webkit-filter: saturate(3);}
+.grayscale {-webkit-filter: grayscale(100%);}
+.contrast {-webkit-filter: contrast(160%);}
+.brightness {-webkit-filter: brightness(0.25);}
+.blur {-webkit-filter: blur(3px);}
+.invert {-webkit-filter: invert(100%);}
+.sepia {-webkit-filter: sepia(100%);}
+.huerotate {-webkit-filter: hue-rotate(180deg);}
+.rss.opacity {-webkit-filter: opacity(50%);}
+
+.weather {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 10rem;
+  text-align: center;
+}
+
+.description {
+  padding-left: 2rem;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.image, .text {
+  text-align: center;
+}
+
+.weather_image {
+  margin-top: 0.8rem;
+  height: 8rem;
+  fill: white;
+}
+
+.forecast {
+  display: flex;
+  margin-top: 2.4rem;
+}
+
+.forecast_day {
+  flex: 1;
+  text-align: center;
+}
+
+.forecast_description {
+  text-transform: capitalize;
+}
+
+.temp {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.forecast_image {
+  height: 80px;
+}
+
+@media only screen and (max-width: 725px) {
+  h1 {
+    font-size: 40px;
   }
-  
-  .current-location__title {
-      font-size: 50px;
-      letter-spacing: 2px;
-      line-height: 1.3;
-      font-family: 'Roboto Slab', serif;
-      margin-top: 120px;
+  .temperature {
+    font-size: 120px;
+  }
+  .description {
+    font-size: 24px;
+  }
+  .weather_image {
+    margin-top: 0.4rem;
+    height: 4rem;
+  }
+  .forecast {
+    margin-top: 3.2rem;
+  }
+  .forecast_day:not(:first-child) {
+    margin-left: 23px;
+  }
+  .temp {
+    font-size: 24px;
+    margin: 0;
+  }
+  .forecast_date {
+    font-size: 16px;
+    margin: 0
     }
-  
-    .current-location__info {
-      font-size: 20px;
-      font-weight: 200;
-      letter-spacing: 2px;
-      margin-top: 70px;
-      margin-left: 70px;
-      margin-right: 70px;
-    }
+  .forecast_image {
+    height: 36px;
+  }
+}

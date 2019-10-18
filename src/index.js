@@ -6,7 +6,7 @@ import "./App.css";
 import "./components/Current/Current.css"
 import "./components/Weather/Weather.css"
 import "./components/Form/Form.css"
-import App from './App';
+import App from './App2';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
