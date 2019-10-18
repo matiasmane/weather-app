@@ -23,7 +23,7 @@ class App extends React.Component {
             temperature: weather.main.temp.toFixed(),
             description: weather.weather[0].description,
             weatherId: weather.weather[0].id,
-            forecast: [list[8], list[16], list[24], list[32], list[39]]
+            forecast: [list[8], list[16], list[24], list[32]]
         })
     }
 
