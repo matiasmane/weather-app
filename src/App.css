@@ -22,10 +22,24 @@ body {
 }
 
 .buttonWrapper__fade {
-  animation: fade-in-keyframes 1.3s;
+  -webkit-animation: fadeIn 1.3s;
+  animation: fadeIn 1.3s;
  }
  
- @keyframes fade-keyframes {
-  from {opacity: 0}
-  to {opacity: 1}
+ @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+ }
+
+ @-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
  }

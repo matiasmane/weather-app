@@ -42,7 +42,7 @@ h1 {
 
 .forecast {
   display: flex;
-  margin-top: 2.4rem;
+  margin-top: 4rem;
 }
 
 .forecastDay {
@@ -76,8 +76,12 @@ h1 {
     font-size: 40px;
   }
 
+  .currentWeather {
+    margin-top: 6rem;
+  }
+
   .currentTemperature {
-    font-size: 60px;
+    font-size: 80px;
   }
 
   .currentDescription {
@@ -90,7 +94,7 @@ h1 {
   }
 
   .forecast {
-    margin-top: 4rem;
+    margin-top: 6rem;
   }
 
   .forecastDay:not(:first-child) {
