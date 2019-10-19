@@ -4,6 +4,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import { styled } from '@material-ui/styles';
 
 import Weather from "./components/Weather/Weather"
+import Loading from "./components/Loading/Loading"
 
 const API_KEY = "9f3b5a163b6c4102b3c407f6668527b4";
 
@@ -23,7 +24,7 @@ class App extends React.Component {
         description: undefined,
         forecast: [],
         done: false,
-        fade: false,
+        update: false,
         api_failure: false
     }
 
@@ -41,7 +42,8 @@ class App extends React.Component {
                     description: weather.weather[0].main,
                     weatherId: weather.weather[0].id,
                     forecast: [list[8], list[16], list[24], list[32]],
-                    done: true
+                    done: true,
+                    update: false
                 })
             } else {
                 this.setState({
@@ -63,9 +65,11 @@ class App extends React.Component {
 
     refresh() {
         this.setState({
-            fade: true
+            update: true
         })
-        navigator.geolocation.getCurrentPosition(this.GetWeather.bind(this))
+        setTimeout(() => {
+            navigator.geolocation.getCurrentPosition(this.GetWeather.bind(this))
+        }, 1500);
     }
 
     render() {
@@ -80,22 +84,23 @@ class App extends React.Component {
                             <>
                                 {this.state.done &&
                                     <div className="buttonWrapper">
-                                        <IconButton onClick={this.refresh.bind(this)} onAnimationEnd={() => this.setState({ fade: false })}>
+                                        <IconButton onClick={this.refresh.bind(this)}>
                                             <MyRefreshIcon />
                                         </IconButton>
                                     </div>
                                 }
-                                <div className={this.state.fade ? 'fade' : ''}>
-                                    <Weather
-                                        city={this.state.city}
-                                        temperature={this.state.temperature}
-                                        description={this.state.description}
-                                        conditionId={this.state.conditionId}
-                                        forecast={this.state.forecast}
-                                        weatherId={this.state.weatherId}
-                                        done={this.state.done}>
-                                    </Weather>
-                                </div>
+                                {!this.state.update ?
+                                    <div>
+                                        <Weather
+                                            city={this.state.city}
+                                            temperature={this.state.temperature}
+                                            description={this.state.description}
+                                            conditionId={this.state.conditionId}
+                                            forecast={this.state.forecast}
+                                            weatherId={this.state.weatherId}
+                                            done={this.state.done}>
+                                        </Weather>
+                                    </div> : <Loading />}
                             </> :
                             <div>
                                 <h1>The app needs your location.</h1>

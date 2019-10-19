@@ -30,7 +30,7 @@ class Loading extends Component {
     render() {
         return (
             <DotWrapper>
-                <h1 style={headerStyle} >Loading</h1>
+                <h1 style={headerStyle}>Loading</h1>
                 <Dot delay="0s" />
                 <Dot delay=".1s" />
                 <Dot delay=".2s" />
