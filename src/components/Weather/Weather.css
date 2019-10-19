@@ -77,7 +77,7 @@ h1 {
   }
 
   .currentTemperature {
-    font-size: 80px;
+    font-size: 60px;
   }
 
   .currentDescription {
@@ -90,7 +90,7 @@ h1 {
   }
 
   .forecast {
-    margin-top: 3.2rem;
+    margin-top: 4rem;
   }
 
   .forecastDay:not(:first-child) {
@@ -110,4 +110,28 @@ h1 {
   .forecastImage {
     height: 36px;
   }
+  
+}
+
+@media only screen and (max-width: 325px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .currentTemperature {
+    font-size: 50px;
+  }
+
+  .currentDescription {
+    font-size: 14px;
+  }
+  
+  .currentWeather__image {
+    height: 3rem;
+  }
+  .forecastDate {
+    font-size: 14px;
+    }
+
+  
 }

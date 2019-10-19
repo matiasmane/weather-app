@@ -20,3 +20,12 @@ body {
 .material-icons {
   font-size: 48px;
 }
+
+.buttonWrapper__fade {
+  animation: fade-in-keyframes 1.3s;
+ }
+ 
+ @keyframes rotate-keyframes {
+  from {opacity: 0}
+  to {opacity: 1}
+ }
