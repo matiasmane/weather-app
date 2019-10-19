@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from "../Loading/Loading"
 
 const Images = {
     2: "https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Thunder-512.png",
@@ -32,7 +33,7 @@ const Weather = (props) => {
     }
     return (
         <>
-            {props.city ?
+            {props.done ?
                 <div>
                     <h1>{props.city} Weather</h1>
                     <div className="currentWeather">
@@ -65,9 +66,7 @@ const Weather = (props) => {
                         </div>
                     }
                 </div>
-                : <div className="disclaimerWrapper">
-                    <h1 className="disclaimer">Loading...</h1>
-                </div>
+                : <Loading></Loading>
             }
         </>
     );

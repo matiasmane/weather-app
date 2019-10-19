@@ -9,7 +9,8 @@ class App extends React.Component {
         city: undefined,
         country: undefined,
         description: undefined,
-        forecast: []
+        forecast: [],
+        done: false
     }
 
     async GetWeather(props) {
@@ -23,12 +24,15 @@ class App extends React.Component {
             temperature: weather.main.temp.toFixed(),
             description: weather.weather[0].description,
             weatherId: weather.weather[0].id,
-            forecast: [list[8], list[16], list[24], list[32]]
+            forecast: [list[8], list[16], list[24], list[32]],
+            done: true
         })
     }
 
     componentDidMount() {
-        navigator.geolocation.getCurrentPosition(this.GetWeather.bind(this))
+        setTimeout(() => {
+            navigator.geolocation.getCurrentPosition(this.GetWeather.bind(this))
+          }, 1500);
     }
 
     render() {
@@ -41,7 +45,8 @@ class App extends React.Component {
                         description={this.state.description}
                         conditionId={this.state.conditionId}
                         forecast={this.state.forecast}
-                        weatherId={this.state.weatherId}>
+                        weatherId={this.state.weatherId}
+                        done={this.state.done}>
                     </Weather>
                     : <div>
                         <h1>The app needs your location.</h1>
