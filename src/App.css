@@ -25,7 +25,7 @@ body {
   animation: fade-in-keyframes 1.3s;
  }
  
- @keyframes rotate-keyframes {
+ @keyframes fade-keyframes {
   from {opacity: 0}
   to {opacity: 1}
  }

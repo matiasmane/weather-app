@@ -78,13 +78,13 @@ class App extends React.Component {
                     <div>
                         {navigator.geolocation ?
                             <>
-                                {this.state.done &&
+                                {/*{this.state.done &&
                                     <div className="buttonWrapper">
                                         <IconButton onClick={this.refresh.bind(this)} onAnimationEnd={() => this.setState({ fade: false })}>
                                             <MyRefreshIcon />
                                         </IconButton>
                                     </div>
-                                }
+                                }*/}
                                 <div className={this.state.fade ? 'fade' : ''}>
                                     <Weather
                                         city={this.state.city}
