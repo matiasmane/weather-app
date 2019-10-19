@@ -1,6 +1,7 @@
 import React from "react";
 import Loading from "../Loading/Loading"
 
+
 const Images = {
     2: "https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Thunder-512.png",
     3: "https://cdn0.iconfinder.com/data/icons/weather-line-19/32/Light_Rain-512.png",
@@ -66,7 +67,7 @@ const Weather = (props) => {
                         </div>
                     }
                 </div>
-                : <Loading></Loading>
+                : <Loading />
             }
         </>
     );

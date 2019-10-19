@@ -9,3 +9,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.buttonWrapper {
+  text-align: right;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.material-icons {
+  font-size: 48px;
+}
