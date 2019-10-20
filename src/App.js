@@ -79,7 +79,7 @@ class App extends React.Component {
                     <div>
                         <h1>The service is currently unavailable</h1>
                     </div> :
-                    <div>
+                    <>
                         {navigator.geolocation ?
                             <>
                                 {this.state.done &&
@@ -90,7 +90,7 @@ class App extends React.Component {
                                     </div>
                                 }
                                 {!this.state.update ?
-                                    <div>
+                                    <div className="main">
                                         <Weather
                                             city={this.state.city}
                                             temperature={this.state.temperature}
@@ -100,13 +100,13 @@ class App extends React.Component {
                                             weatherId={this.state.weatherId}
                                             done={this.state.done}>
                                         </Weather>
-                                    </div> : <Loading />}
+                                    </div> : <div className="main"><Loading /></div> }
                             </> :
                             <div>
                                 <h1>The app needs your location.</h1>
                             </div>
                         }
-                    </div>
+                    </>
                 }
             </>
         )

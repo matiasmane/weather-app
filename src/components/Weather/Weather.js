@@ -35,7 +35,7 @@ const Weather = (props) => {
     return (
         <>
             {props.done ?
-                <div>
+                <>
                     <h1>{props.city}</h1>
                     <div className="currentWeather">
                         <div className="currentTemperature">
@@ -66,7 +66,7 @@ const Weather = (props) => {
                             )}
                         </div>
                     }
-                </div>
+                </>
                 : <Loading />
             }
         </>

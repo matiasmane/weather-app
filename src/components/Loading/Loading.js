@@ -10,6 +10,7 @@ const BounceAnimation = keyframes`
 const DotWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+  justify-content: center;
 `;
 
 const Dot = styled.div`
@@ -23,7 +24,7 @@ const Dot = styled.div`
 `;
 
 var headerStyle = {
-    margin: 0
+    margin: 0,
 };
 
 class Loading extends Component {

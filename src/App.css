@@ -5,9 +5,6 @@ body {
   background: black;
   color: #979797;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .buttonWrapper {
@@ -19,4 +16,14 @@ body {
 
 .material-icons {
   font-size: 48px;
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */	
+  width: 100%;
 }
