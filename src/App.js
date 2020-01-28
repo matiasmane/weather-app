@@ -100,7 +100,7 @@ class App extends React.Component {
                                             weatherId={this.state.weatherId}
                                             done={this.state.done}>
                                         </Weather>
-                                    </div> : <div className="main"><Loading /></div> }
+                                    </div> : <div className="loading"><Loading /></div> }
                             </> :
                             <div>
                                 <h1>The app needs your location.</h1>
