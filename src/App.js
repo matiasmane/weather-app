@@ -82,15 +82,15 @@ class App extends React.Component {
                     <>
                         {navigator.geolocation ?
                             <>
-                                {this.state.done &&
+                                {!this.state.update ?
+                                    <div className="main">
+                                        {this.state.done &&
                                     <div className="buttonWrapper">
                                         <IconButton onClick={this.refresh.bind(this)}>
                                             <MyRefreshIcon />
                                         </IconButton>
                                     </div>
                                 }
-                                {!this.state.update ?
-                                    <div className="main">
                                         <Weather
                                             city={this.state.city}
                                             temperature={this.state.temperature}
